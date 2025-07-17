@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./ConferenceEvent.css";
-import TotalCost from "./TotalCost";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementQuantity, decrementQuantity } from "./venueSlice";
 import { incrementAvQuantity, decrementAvQuantity } from "./avSlice";
 import { toggleMealSelection } from "./mealsSlice";
+import TotalCost from "./TotalCost";
 
 const ConferenceEvent = () => {
 	const [showItems, setShowItems] = useState(false);
@@ -20,15 +20,7 @@ const ConferenceEvent = () => {
 			(item) => item.name === "Auditorium Hall (Capacity:200)"
 		).quantity;
 
-	const avTotalCost = calculateTotalCost("av");
-
-    const mealsTotalCost = calculateTotalCost("meals");
-
-    const totalCosts = {
-        venue: venueTotalCost,
-        av: avTotalCost,
-        meals: mealsTotalCost,
-    };
+    
 
 	const handleToggleItems = () => {
 		console.log("handleToggleItems called");
@@ -155,7 +147,18 @@ const ConferenceEvent = () => {
 		return totalCost;
 	};
 
-	const venueTotalCost = calculateTotalCost("venue");
+    const venueTotalCost = calculateTotalCost("venue");
+
+	const avTotalCost = calculateTotalCost("av");
+
+    const mealsTotalCost = calculateTotalCost("meals");
+
+    const totalCosts = {
+        venue: venueTotalCost,
+        av: avTotalCost,
+        meals: mealsTotalCost,
+    };
+
 
 	const navigateToProducts = (idType) => {
 		if (idType === "#venue" || idType === "#addons" || idType === "#meals") {
